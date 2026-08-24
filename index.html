@@ -66,6 +66,16 @@
 
   section, header, footer{ position:relative; z-index:1; }
 
+  /* ---------- Presenta ---------- */
+  .presenter-credit{
+    display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:20px;
+  }
+  .presenter-credit img{ height:32px; width:auto; }
+  .presenter-credit span{
+    font-family:'JetBrains Mono', monospace; font-size:13px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--cream);
+  }
+
   /* ---------- Nav ---------- */
   .nav{
     position:sticky; top:0; z-index:50;
@@ -261,6 +271,10 @@
     </div>
 
     <div class="hero-form-col" id="preregistro">
+      <div class="presenter-credit">
+        <img src="ASSETS/fan-tribute-icon.png" alt="Fan Tribute">
+        <span>Fan Tribute presenta</span>
+      </div>
       <div class="prereg-head">
         <div class="eyebrow">Preregistro</div>
         <h2>Sé de los primeros en enterarte</h2>
