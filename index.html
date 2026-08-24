@@ -88,6 +88,16 @@
 
   /* ---------- Hero ---------- */
   .hero{ padding:90px 0 70px; text-align:center; }
+  .hero-grid{ display:flex; flex-direction:column; align-items:center; gap:50px; }
+  .hero-copy{ max-width:640px; }
+  .hero-form-col{ width:100%; max-width:560px; order:-1; }
+  @media (min-width:960px){
+    .hero-grid{ flex-direction:row; align-items:center; justify-content:space-between; text-align:left; gap:56px; }
+    .hero-copy{ max-width:520px; flex:1; }
+    .hero-copy .tagline{ margin:0 0 34px; }
+    .hero-copy .hero-meta{ justify-content:flex-start; }
+    .hero-form-col{ flex:0 0 420px; max-width:420px; order:0; }
+  }
   .badge-indep{
     display:inline-flex; align-items:center; gap:8px; margin-bottom:28px;
     padding:8px 16px; border-radius:100px; border:1px solid var(--line);
@@ -118,22 +128,6 @@
   .hero-meta span{
     padding:8px 16px; border-radius:100px; border:1px solid var(--line); background:rgba(253,242,255,0.03);
   }
-  .btn{
-    display:inline-flex; align-items:center; gap:10px; padding:18px 38px; border-radius:100px;
-    font-family:'Unbounded', sans-serif; font-weight:700; font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
-    text-decoration:none; border:none; cursor:pointer;
-    background:linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--blue));
-    background-size:300% auto; color:#100019;
-    box-shadow:0 0 40px rgba(255,106,26,0.5);
-    animation: pulseGlow 2.6s ease-in-out infinite;
-    transition: transform 0.25s ease, background-position 0.6s ease;
-  }
-  .btn:hover{ transform:translateY(-3px); background-position:right center; }
-  @keyframes pulseGlow{
-    0%,100%{ box-shadow:0 0 30px rgba(255,42,61,0.4); }
-    50%{ box-shadow:0 0 55px rgba(255,106,26,0.55); }
-  }
-
   .wings{ position:absolute; opacity:0.5; filter:drop-shadow(0 0 18px rgba(255,42,61,0.5)); pointer-events:none; }
   .wings--l{ top:60px; left:-40px; width:160px; transform:scaleX(-1) rotate(-8deg); }
   .wings--r{ top:120px; right:-30px; width:130px; transform:rotate(10deg); }
@@ -164,93 +158,18 @@
     color:var(--yellow); font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:0.02em;
   }
 
-  /* ---------- Stages ---------- */
-  .stage-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
-  @media (max-width:760px){ .stage-grid{ grid-template-columns:1fr; } }
-  .stage-card{
-    position:relative; border-radius:24px; padding:30px 28px; border:1px solid var(--line);
-    background:linear-gradient(165deg, rgba(253,242,255,0.05), rgba(253,242,255,0.015));
-    overflow:hidden; transition:transform 0.3s ease, border-color 0.3s ease;
-  }
-  .stage-card:hover{ transform:translateY(-6px); }
-  .stage-card::before{
-    content:''; position:absolute; inset:0; opacity:0; transition:opacity 0.3s ease; pointer-events:none;
-  }
-  .stage-card:hover::before{ opacity:1; }
-  .stage-card--pulso{ border-color:rgba(255,42,61,0.35); }
-  .stage-card--pulso:hover{ box-shadow:0 20px 55px rgba(255,42,61,0.18); }
-  .stage-card--follaje{ border-color:rgba(255,212,0,0.35); }
-  .stage-card--follaje:hover{ box-shadow:0 20px 55px rgba(255,212,0,0.16); }
-  .stage-card--prisma{ border-color:rgba(30,111,255,0.35); }
-  .stage-card--prisma:hover{ box-shadow:0 20px 55px rgba(30,111,255,0.18); }
-  .stage-card--subgrave{ border-color:rgba(255,42,61,0.35); }
-  .stage-card--subgrave:hover{ box-shadow:0 20px 55px rgba(255,42,61,0.2); }
-
-  .stage-tag{ font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; opacity:0.7; margin-bottom:10px; }
-  .stage-card--pulso .stage-tag{ color:var(--red); }
-  .stage-card--follaje .stage-tag{ color:var(--yellow); }
-  .stage-card--prisma .stage-tag{ color:var(--blue); }
-  .stage-card--subgrave .stage-tag{ color:var(--blue); }
-
-  .stage-name{ font-family:'Unbounded', sans-serif; font-weight:800; font-size:26px; margin-bottom:6px; }
-  .stage-genre{ font-size:13px; color:var(--dim); margin-bottom:20px; }
-  .stage-lineup{ list-style:none; display:flex; flex-direction:column; gap:8px; }
-  .stage-lineup li{
-    display:flex; justify-content:space-between; align-items:center; gap:10px;
-    padding:10px 14px; border-radius:10px; background:rgba(253,242,255,0.04);
-    font-size:13px;
-  }
-  .tba{
-    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:0.08em;
-    padding:3px 9px; border-radius:100px; border:1px dashed var(--line); color:var(--dim);
-  }
-
-  /* ---------- Boletería ---------- */
-  .pista-label{
-    text-align:center; font-family:'Unbounded', sans-serif; font-weight:700; font-size:12px;
-    letter-spacing:0.14em; text-transform:uppercase; color:var(--dim); margin-bottom:22px;
-  }
-  .ticket-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:800px; margin:0 auto; }
-  .ticket-grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; max-width:1000px; margin:0 auto; }
-  @media (max-width:700px){ .ticket-grid{ grid-template-columns:1fr; } }
-  @media (max-width:900px){ .ticket-grid3{ grid-template-columns:1fr; } }
-  .ticket-card{
-    border-radius:24px; padding:34px 30px; border:1px solid var(--line);
-    background:linear-gradient(165deg, rgba(253,242,255,0.05), rgba(253,242,255,0.015));
-    display:flex; flex-direction:column;
-  }
-  .ticket-card--pv1{ border-color:rgba(255,212,0,0.4); }
-  .ticket-card--pv2{ border-color:rgba(30,111,255,0.4); }
-  .ticket-card--general{ border-color:rgba(255,106,26,0.4); }
-  .ticket-card--backstage{ border-color:rgba(30,111,255,0.45); }
-  .ticket-card--vip{ border-color:rgba(255,42,61,0.4); position:relative; }
-  .ticket-card--vip::after{
-    content:'MÁS POPULAR'; position:absolute; top:-1px; right:24px; transform:translateY(-50%);
-    background:linear-gradient(90deg, var(--red), var(--yellow)); color:#100019;
-    font-family:'Unbounded', sans-serif; font-weight:800; font-size:9.5px; letter-spacing:0.06em;
-    padding:6px 14px; border-radius:100px;
-  }
-  .ticket-kind{ font-family:'Unbounded', sans-serif; font-weight:800; font-size:20px; margin-bottom:6px; }
-  .ticket-price{ font-family:'Unbounded', sans-serif; font-weight:900; font-size:34px; margin-bottom:4px; }
-  .ticket-price sup{ font-size:13px; opacity:0.6; margin-right:2px; }
-  .ticket-price-note{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--dim); margin-bottom:22px; }
-  .ticket-feats{ list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:26px; flex:1; }
-  .ticket-feats li{ display:flex; gap:9px; align-items:flex-start; font-size:13.5px; color:var(--dim); line-height:1.5; }
-  .ticket-feats svg{ flex:none; width:15px; height:15px; margin-top:2px; color:var(--red); }
-  .ticket-btn{
-    display:block; text-align:center; padding:14px 20px; border-radius:12px;
-    font-family:'Unbounded', sans-serif; font-weight:700; font-size:12px; letter-spacing:0.04em; text-transform:uppercase;
-    text-decoration:none; border:1px solid var(--line); color:var(--dim);
-    background:rgba(253,242,255,0.05); cursor:not-allowed;
-  }
-
   /* ---------- Preregistro ---------- */
+  .prereg-head{ text-align:center; margin:0 auto 22px; }
+  .prereg-head h2{
+    font-family:'Unbounded', sans-serif; font-weight:800; font-size:22px; margin-bottom:8px;
+  }
+  .prereg-head p{ color:var(--dim); font-size:13px; line-height:1.6; }
   .prereg{
-    max-width:560px; margin:0 auto; border-radius:28px; padding:40px 36px;
+    width:100%; margin:0 auto; border-radius:28px; padding:34px 32px;
     border:1px solid rgba(255,42,61,0.35);
     background:linear-gradient(165deg, rgba(255,42,61,0.08), rgba(30,111,255,0.05));
   }
-  @media (max-width:600px){ .prereg{ padding:30px 22px; } }
+  @media (max-width:600px){ .prereg{ padding:28px 22px; } }
   .prereg-field{ margin-bottom:18px; }
   .prereg-field label{
     display:block; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.06em;
@@ -279,17 +198,6 @@
   .prereg-msg--ok{ border:1px solid rgba(255,212,0,0.4); background:rgba(255,212,0,0.08); color:var(--yellow); }
   .prereg-msg--err{ border:1px solid rgba(255,42,61,0.4); background:rgba(255,42,61,0.08); color:var(--red); }
   .prereg-privacy{ margin-top:16px; font-size:11px; color:var(--dim); opacity:0.65; line-height:1.6; text-align:center; }
-
-  /* ---------- Ubicación ---------- */
-  .logistics{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:900px; margin:0 auto; }
-  @media (max-width:760px){ .logistics{ grid-template-columns:1fr; } }
-  .logistics-card{
-    text-align:center; padding:28px 20px; border-radius:20px; border:1px solid var(--line);
-    background:rgba(253,242,255,0.03);
-  }
-  .logistics-card svg{ width:28px; height:28px; margin:0 auto 14px; color:var(--blue); }
-  .logistics-card h3{ font-family:'Unbounded', sans-serif; font-weight:700; font-size:15px; margin-bottom:8px; }
-  .logistics-card p{ font-size:13px; color:var(--dim); line-height:1.6; }
 
   /* ---------- Footer ---------- */
   footer{ padding:60px 0 40px; border-top:1px solid var(--line); margin-top:40px; }
@@ -326,10 +234,7 @@
     <div class="nav-logo">PRE-<span>EDC</span></div>
     <div class="nav-links">
       <a href="#about">Qué es esto</a>
-      <a href="#stages">Escenarios</a>
       <a href="#preregistro">Preregistro</a>
-      <a href="#tickets">Boletería</a>
-      <a href="#info">Ubicación</a>
     </div>
     <a class="nav-cta" href="#preregistro">Preregístrate</a>
   </div>
@@ -339,23 +244,55 @@
   <svg class="wings wings--l" viewBox="0 0 200 200" fill="none"><path d="M100 100C80 60 30 30 10 50C-10 70 20 130 60 140C90 147 100 120 100 100Z" fill="url(#gL)"/><defs><linearGradient id="gL" x1="0" y1="0" x2="200" y2="200"><stop stop-color="#FF2A3D"/><stop offset="1" stop-color="#1E6FFF"/></linearGradient></defs></svg>
   <svg class="wings wings--r" viewBox="0 0 200 200" fill="none"><path d="M100 100C120 60 170 30 190 50C210 70 180 130 140 140C110 147 100 120 100 100Z" fill="url(#gR)"/><defs><linearGradient id="gR" x1="200" y1="0" x2="0" y2="200"><stop stop-color="#1E6FFF"/><stop offset="1" stop-color="#FF2A3D"/></linearGradient></defs></svg>
 
-  <div class="badge-indep"><span class="dot"></span> Evento independiente · No afiliado ni patrocinado por Insomniac / EDC</div>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="badge-indep"><span class="dot"></span> Evento independiente · No afiliado ni patrocinado por Insomniac / EDC</div>
 
-  <h1>PRE-EDC</h1>
-  <div class="sub">Bogotá</div>
+      <h1>PRE-EDC</h1>
+      <div class="sub">Bogotá</div>
 
-  <p class="tagline">Una fiesta previa al <strong>EDC Colombia — 10 y 11 de octubre</strong>. La previa no oficial para calentar motores antes del festival grande: misma energía, otra escala.</p>
+      <p class="tagline">Una fiesta previa al <strong>EDC Colombia — 10 y 11 de octubre</strong>. La previa no oficial para calentar motores antes del festival grande: misma energía, otra escala.</p>
 
-  <div class="hero-meta">
-    <span id="metaFecha">📅 Fecha por confirmar</span>
-    <span>📍 Bogotá, Colombia</span>
-    <span id="metaEdad">🔞 +18 (sujeto a confirmación)</span>
+      <div class="hero-meta">
+        <span id="metaFecha">📅 Fecha por confirmar</span>
+        <span>📍 Bogotá, Colombia</span>
+        <span id="metaEdad">🔞 +18 (sujeto a confirmación)</span>
+      </div>
+    </div>
+
+    <div class="hero-form-col" id="preregistro">
+      <div class="prereg-head">
+        <div class="eyebrow">Preregistro</div>
+        <h2>Sé de los primeros en enterarte</h2>
+        <p>Te avisamos apenas se abra la preventa 1 — cupo limitado y precios especiales para quienes se registraron antes.</p>
+      </div>
+
+      <form class="prereg" id="preregForm" action="https://formspree.io/f/xjybqgrz" method="POST">
+        <div class="prereg-field">
+          <label for="preregEmail">Correo electrónico</label>
+          <input type="email" id="preregEmail" name="email" placeholder="tu@correo.com" required>
+        </div>
+        <div class="prereg-field">
+          <label for="preregIg">Usuario de Instagram</label>
+          <input type="text" id="preregIg" name="instagram" placeholder="@tuusuario" required pattern="^@?[A-Za-z0-9._]{1,30}$">
+          <div class="hint">Incluye el @, por ejemplo @alasbogota</div>
+        </div>
+        <div class="prereg-field">
+          <label for="preregCel">Celular</label>
+          <input type="tel" id="preregCel" name="celular" placeholder="+57 300 000 0000" required pattern="^[0-9+()\s-]{7,20}$">
+        </div>
+
+        <input type="hidden" name="_subject" value="Nuevo preregistro — PRE-EDC Bogotá">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <button class="prereg-submit" type="submit">Preregistrarme</button>
+
+        <div class="prereg-msg" id="preregMsg"></div>
+      </form>
+
+      <p class="prereg-privacy">Tus datos se usan únicamente para avisarte sobre PRE-EDC. No los compartimos con terceros.</p>
+    </div>
   </div>
-
-  <a class="btn" href="#preregistro">
-    Preregístrate ahora
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-  </a>
 </header>
 
 <section id="about">
@@ -367,206 +304,6 @@
     <div class="about">
       <p>PRE-EDC es una fiesta <strong>independiente y no oficial</strong>, organizada por promotores locales, inspirada en la energía del EDC Colombia — pero es su propio evento, con su propio line-up, sus propios escenarios y su propia identidad.</p>
       <span class="highlight">No somos Insomniac ni EDC. No vendemos boletos del festival oficial. Somos la fiesta con la que calientas motores antes de que empiece lo grande.</span>
-    </div>
-  </div>
-</section>
-
-<section id="preregistro">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Preregistro</div>
-      <h2>Sé de los primeros en enterarte</h2>
-      <p>Regístrate ahora y te avisamos apenas se abra la preventa 1 — cupo limitado y precios especiales para quienes se registraron antes.</p>
-    </div>
-
-    <form class="prereg" id="preregForm" action="https://formspree.io/f/xjybqgrz" method="POST">
-      <div class="prereg-field">
-        <label for="preregEmail">Correo electrónico</label>
-        <input type="email" id="preregEmail" name="email" placeholder="tu@correo.com" required>
-      </div>
-      <div class="prereg-field">
-        <label for="preregIg">Usuario de Instagram</label>
-        <input type="text" id="preregIg" name="instagram" placeholder="@tuusuario" required pattern="^@?[A-Za-z0-9._]{1,30}$">
-        <div class="hint">Incluye el @, por ejemplo @alasbogota</div>
-      </div>
-      <div class="prereg-field">
-        <label for="preregCel">Celular</label>
-        <input type="tel" id="preregCel" name="celular" placeholder="+57 300 000 0000" required pattern="^[0-9+()\s-]{7,20}$">
-      </div>
-
-      <input type="hidden" name="_subject" value="Nuevo preregistro — PRE-EDC Bogotá">
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-
-      <button class="prereg-submit" type="submit">Preregistrarme</button>
-
-      <div class="prereg-msg" id="preregMsg"></div>
-    </form>
-
-    <p class="prereg-privacy">Tus datos se usan únicamente para avisarte sobre PRE-EDC. No los compartimos con terceros.</p>
-  </div>
-</section>
-
-<section id="stages">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Escenarios</div>
-      <h2>4 mundos, una sola noche</h2>
-      <p>Cada escenario tiene su propia identidad sonora y visual — elige tu ruta o recórrelos todos.</p>
-    </div>
-
-    <div class="stage-grid">
-
-      <div class="stage-card stage-card--pulso">
-        <div class="stage-tag">Campo Kinético</div>
-        <div class="stage-name">PULSO</div>
-        <div class="stage-genre">Big room · Mainstage energy · Headliners</div>
-        <ul class="stage-lineup">
-          <li>Headliner <span class="tba">TBA</span></li>
-          <li>Big room set <span class="tba">TBA</span></li>
-          <li>Support act <span class="tba">TBA</span></li>
-        </ul>
-      </div>
-
-      <div class="stage-card stage-card--follaje">
-        <div class="stage-tag">Selva Bio</div>
-        <div class="stage-name">FOLLAJE</div>
-        <div class="stage-genre">House · Tech house · Organic house</div>
-        <ul class="stage-lineup">
-          <li>Organic house <span class="tba">TBA</span></li>
-          <li>Tech house <span class="tba">TBA</span></li>
-          <li>Groove selector <span class="tba">TBA</span></li>
-        </ul>
-      </div>
-
-      <div class="stage-card stage-card--prisma">
-        <div class="stage-tag">Jardín Neón</div>
-        <div class="stage-name">PRISMA</div>
-        <div class="stage-genre">Techno · Melodic techno</div>
-        <ul class="stage-lineup">
-          <li>Melodic techno <span class="tba">TBA</span></li>
-          <li>Peak time techno <span class="tba">TBA</span></li>
-          <li>B2B closing <span class="tba">TBA</span></li>
-        </ul>
-      </div>
-
-      <div class="stage-card stage-card--subgrave">
-        <div class="stage-tag">Foso Sónico</div>
-        <div class="stage-name">SUBGRAVE</div>
-        <div class="stage-genre">Bass · Dubstep · Riddim</div>
-        <ul class="stage-lineup">
-          <li>Dubstep headliner <span class="tba">TBA</span></li>
-          <li>Riddim set <span class="tba">TBA</span></li>
-          <li>Bass selector <span class="tba">TBA</span></li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="tickets">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Boletería</div>
-      <h2>Asegura tu entrada</h2>
-      <p>Cupo limitado — los precios y beneficios finales se confirman antes de abrir venta.</p>
-    </div>
-
-    <div class="pista-label">Pista</div>
-    <div class="ticket-grid3">
-
-      <div class="ticket-card ticket-card--pv1">
-        <div class="ticket-kind">Preventa 1</div>
-        <div class="ticket-price"><sup>$</sup>Por confirmar</div>
-        <div class="ticket-price-note">Cupo limitado · primeras entradas</div>
-        <ul class="ticket-feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Acceso a los 4 escenarios toda la noche.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>El precio más bajo de toda la venta.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Guardarropa incluido.</span></li>
-        </ul>
-        <a class="ticket-btn" href="#" onclick="return false;">Muy pronto</a>
-      </div>
-
-      <div class="ticket-card ticket-card--pv2">
-        <div class="ticket-kind">Preventa 2</div>
-        <div class="ticket-price"><sup>$</sup>Por confirmar</div>
-        <div class="ticket-price-note">Segunda tanda, antes de agotarse</div>
-        <ul class="ticket-feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Acceso a los 4 escenarios toda la noche.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Zonas comunes y food trucks.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Guardarropa incluido.</span></li>
-        </ul>
-        <a class="ticket-btn" href="#" onclick="return false;">Muy pronto</a>
-      </div>
-
-      <div class="ticket-card ticket-card--general">
-        <div class="ticket-kind">General</div>
-        <div class="ticket-price"><sup>$</sup>Por confirmar</div>
-        <div class="ticket-price-note">Precio final de taquilla</div>
-        <ul class="ticket-feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Acceso a los 4 escenarios toda la noche.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Zonas comunes y food trucks.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Guardarropa incluido.</span></li>
-        </ul>
-        <a class="ticket-btn" href="#" onclick="return false;">Muy pronto</a>
-      </div>
-
-    </div>
-
-    <div class="pista-label" style="margin-top:56px;">Premium</div>
-    <div class="ticket-grid">
-      <div class="ticket-card ticket-card--vip">
-        <div class="ticket-kind">VIP</div>
-        <div class="ticket-price"><sup>$</sup>Por confirmar</div>
-        <div class="ticket-price-note">Mesa para 5–6 personas</div>
-        <ul class="ticket-feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Mesa propia para 5 o 6 personas.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Zona elevada frente a PULSO.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Barra exclusiva y baños VIP.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Kit de bienvenida con glitter y accesorios.</span></li>
-        </ul>
-        <a class="ticket-btn" href="#" onclick="return false;">Muy pronto</a>
-      </div>
-
-      <div class="ticket-card ticket-card--backstage">
-        <div class="ticket-kind">Backstage</div>
-        <div class="ticket-price"><sup>$</sup>Por confirmar</div>
-        <div class="ticket-price-note">Mesa para 5–6 personas</div>
-        <ul class="ticket-feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Acceso al backstage, cerca de los DJs.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Mesa propia para 5 o 6 personas.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Obsequio para cada persona.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Prioridad de ingreso.</span></li>
-        </ul>
-        <a class="ticket-btn" href="#" onclick="return false;">Muy pronto</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="info">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Ubicación y logística</div>
-      <h2>Lo que necesitas saber</h2>
-    </div>
-
-    <div class="logistics">
-      <div class="logistics-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        <h3>Venue</h3>
-        <p id="venuePlaceholder">Por confirmar<br>Bogotá, Colombia</p>
-      </div>
-      <div class="logistics-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <h3>Horario</h3>
-        <p>Fecha y hora por confirmar<br>(antes del 10 de octubre)</p>
-      </div>
-      <div class="logistics-card">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <h3>Edad mínima</h3>
-        <p>+18 años<br>(sujeto a confirmación del venue)</p>
-      </div>
     </div>
   </div>
 </section>
